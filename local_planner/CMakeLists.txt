@@ -143,6 +143,7 @@ set(LOCAL_PLANNER_CPP_FILES   "src/nodes/local_planner.cpp"
                               "src/nodes/planner_functions.cpp"
                               "src/nodes/local_planner_visualization.cpp"
                               "src/utils/trajectory_simulator.cpp"
+                              
 )
 
 add_library(local_planner     "${LOCAL_PLANNER_CPP_FILES}")
@@ -154,9 +155,12 @@ add_library(local_planner_nodelet src/nodes/local_planner_nodelet.cpp)
 add_dependencies(local_planner ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(local_planner_nodelet local_planner ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
+
+
 ## Declare a C++ executable
 # add_executable(avoidance_node src/avoidance_node.cpp)
 add_executable(local_planner_node src/nodes/local_planner_node_main.cpp)
+
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -279,3 +283,7 @@ if(CATKIN_ENABLE_TESTING)
     ## Add folders to be run by python nosetests
     # catkin_add_nosetests(test)
 endif()
+
+
+add_executable(kari_estimator src/nodes/kari_estimator.cpp)
+target_link_libraries(kari_estimator ${catkin_LIBRARIES})
